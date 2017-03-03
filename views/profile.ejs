@@ -1,0 +1,77 @@
+<%- contentFor('profile')%>
+
+<div class="page-header row">
+     <div class="col-sm-2 pull-left">
+            <% if(profileVisit){%>
+                <img class="img-thumbnail" style="max-height: 100px; max-width: 150px;" src = "<%= profileVisit.profileimg %>" />
+                <br>
+            <% } else {
+             if(user.profileimg){ %>
+                <img class="img-thumbnail" style="max-height: 100px; max-width: 150px;" src = "<%= user.profileimg %>" />
+                <br>
+            <% }} %>        
+    </div>
+    <% if(profileVisit){%>
+         <div class="col-sm-4 pull-left"> 
+         <div class="row"><h2><%= profileVisit.username %></h2></div>
+         <div class="row"><h2 style="font-size:15pt"><%= profileVisit.name %></h2></div>
+         <div class="row"><h2 style="font-size:15pt"><%= profileVisit.email %></h2></div>
+         </div>
+    <% } else { %>
+         <div class="col-sm-4 pull-left"> 
+         <div class="row"><h2><%= user.username %></h2></div>
+         <div class="row"><h2 style="font-size:15pt"><%= user.name %></h2></div>
+         <div class="row"><h2 style="font-size:15pt"><%= user.email %></h2></div>
+         </div>
+    <%}%>
+    <br>
+</div>
+<br>
+<div class = "page-header">
+    <% if(!profileVisit){ %>
+    <p>Welcome to your Portfolio</p>
+     <ul class="nav nav-pills pull-right pull-down">
+    <li role="presentation" ><a href="/portfolios/addwork">Add work</a></li>
+    <li role="presentation" ><a href="/portfolios/editprofile">Edit profile</a></li>
+    </ul>
+    <br>
+    <%} else{ %>
+    <p>Welcome to <%= profileVisit.username %>'s Portfolio</p>
+    <% } %>
+</div>
+<body>
+    <% if(projects){
+    for(i=0; i<projects.length && i<2; i++){ %>
+        <div class="row jumbotron">
+           <div class="col-sm-4">
+           
+            <% if(projects[i].img){ %>
+                <img class="img-thumbnail" style="max-width: 200px;" src = "<%= projects[i].img %>" /> 
+            <br>
+            <% } else{ %>
+                <img class="img-thumbnail" style="max-width: 200px;" src = "/screenshots/default.jpg" />   
+            <br>
+            <% } %> 
+            <br>
+           </div> 
+           <div class="col-sm-8">
+            <ul class="nav nav-pills">
+              <div id="project"><li role="presentation"  >
+              &nbsp; <a href="/portfolios/projectdetails/<%= projects[i]._id %>" style= "font-size: 20px" id="id" target="_blank"class="pull-left"><%= projects[i].title %></a></li>
+           </div>
+            </ul>
+           </div>
+        </div>
+    <%}} 
+    if(profileVisit){ %>
+    
+    <ul class="nav nav-pills pull-right pull-down">
+      <div  style = "postion: absolute; bottom:0; right:0;"><li role="presentation"  ><a href="/portfolios/allprojects/<%= profileVisit.username %>" class="pull-right"> > View all projects</a></li></div>
+    </ul>
+    <%} else{%>
+    <ul class="nav nav-pills pull-right pull-down">
+      <div  style = "postion: absolute; bottom:0; right:0;"><li role="presentation"  ><a href="/portfolios/allprojects/" class="pull-right"> > View all projects</a></li></div>
+    </ul>
+    <%}%>
+    <br>
+</body>

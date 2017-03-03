@@ -1,0 +1,55 @@
+<%- contentFor('allprojects')%>
+<div class="page-header">
+     <div class="col-sm-2 pull-left">
+     <% if(profileVisit){ 
+         if(profileVisit.profileimg){ %>
+                <img class="img-thumbnail" style="max-height: 100px; max-width: 150px;" src = "<%= profileVisit.profileimg %>" />
+     <% }%>
+     </div>
+     <div class="col-sm-4 pull-left"> 
+         <div class="row"><h2><%= profileVisit.username %></h2></div>
+         <div class="row"><h2 style="font-size:15pt"><%= profileVisit.name %></h2></div>
+         <div class="row"><h2 style="font-size:15pt"><%= profileVisit.email %></h2></div>
+    </div>
+                
+     <%} else{  
+            if(user.profileimg){ %>
+                <img class="img-thumbnail" style="max-height: 100px; max-width: 150px;" src = "<%= user.profileimg %>" />
+         <% }%>
+         </div>
+         <div class="col-sm-4 pull-left"> 
+         <div class="row"><h2><%= user.username %></h2></div>
+         <div class="row"><h2 style="font-size:15pt"><%= user.name %></h2></div>
+         <div class="row"><h2 style="font-size:15pt"><%= user.email %></h2></div>
+         </div>
+        <%} %>        
+    
+</div>
+
+<body>
+    <% if(projects){
+    for(i=0; i<projects.length ; i++){ %>
+        <div class="row jumbotron">
+           <div class="col-sm-4">
+           
+            <% if(projects[i].img){ %>
+                <img class="img-thumbnail" style="max-width: 200px;" src = "<%= projects[i].img %>" /> 
+            <br>
+            <% } else{ %>
+                <img class="img-thumbnail" style="max-width: 200px;" src = "/screenshots/default.jpg" />   
+            <br>
+            <% } %> 
+            <br>
+           </div> 
+           <div class="col-sm-8">
+                <p class="pull-left"> &nbsp; <%= projects[i].title %></p><br>
+              <ul class="nav nav-pills pull-right pull-down">
+              <div  style = "postion: absolute; bottom:0; right:0;"><li role="presentation"  ><a href="/portfolios/projectdetails/<%= projects[i]._id%>" target="_blank" class="pull-right"> > More details</a></li>
+           </div>
+            </ul>
+           </div> 
+           <br>
+        </div>
+    <%}}%>
+    <br>
+</body> 

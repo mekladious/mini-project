@@ -1,0 +1,55 @@
+<%- contentFor('index')%>
+
+<h2 class="page-header">Students Portfolios</h2>
+<p></p>
+
+<body>
+<div id="navbar">
+    <ul class ="pagination">
+        <% var pages = Math.floor((users.length+4)/5);
+        for(p=1; p<=pages; p++){%>
+       <li> <a href="#page<%=p%>"> page <%=p%> </a></li>
+        <%}%>
+    </ul> 
+</div>
+
+    <% if(users){ %>
+    <% var pages = Math.floor((users.length+4)/5);%>
+    <% for(j=0; j<pages;  j++){
+        var num = j+1;%>
+    <div id="page<%=num%>" >
+        <% for(i= j*5 ; (i<j*5+5 && i<users.length) ; i++){ %>
+            <div class="row jumbotron">
+                <div class="col-sm-4">
+                    <% if(users[i].profileimg){ %>
+                        <img class="img-thumbnail" style="max-width: 200px;" src = "<%= users[i].profileimg %>" /> 
+                    <br>
+                    <% } else{ %>
+                        <img class="img-thumbnail" style="max-width: 200px;" src = "/screenshots/default.jpg" />   
+                    <br>
+                    <% } %> 
+                    <br>
+                </div> 
+
+                <div class="col-sm-8">
+                        <p class="pull-left"> &nbsp; <%= users[i].username %></p><br>
+                    <ul class="nav nav-pills pull-right pull-down">
+                    <div  style = "postion: absolute; bottom:0; right:0;"><li role="presentation"  ><a href="/portfolios/profile/<%= users[i].username%>" target="_blank" class="pull-right"> > View Portfolio Summary</a></li>
+                </div>
+                    </ul>
+                </div> 
+                <br>
+        </div>
+     <%}%>
+    </div>
+    <%}}%>
+
+    <script>
+    $('#navbar a').click(function() {
+    $('div:not(#navbar)').hide();
+    $($(this).attr('href')).show();
+    return false; // You may or may not want this line.
+});
+    </script>
+    <br>
+</body> 

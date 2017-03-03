@@ -1,0 +1,28 @@
+<%- contentFor('addwork')%>
+
+<h2 class="page-header">Add Work</h2>
+
+<% if(typeof errors == 'object' && errors){ %>
+    <% for(i=0; i<errors.length; i++) {%>
+     <div class="alert alert-danger"><%= errors[i].msg %></div>
+    <% } %>
+<% } %>
+
+<form method="post" enctype="multipart/form-data" action="/portfolios/addwork">
+
+<div>
+            
+    <div class="form-group">
+    <input type="text" class="form-control" name= "title" placeholder="Title">
+    </div>
+
+    <div class="form-group">
+    <textarea class="text-area form-control" name= "desc" placeholder="Description and/or Links to project"></textarea>
+    </div>
+    
+    <div class="form-group">
+            <label>Add a screenshot:</label>
+            <input type="file" name="screenshot" accept="image/*"/>
+    </div>
+    <div><button type="submit" class="btn btn-primary center">Submit</button></div>
+</div>

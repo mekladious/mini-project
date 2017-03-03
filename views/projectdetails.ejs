@@ -1,0 +1,46 @@
+<%- contentFor('projectdetails')%>
+<div class="page-header row">
+     <div class="col-sm-2 pull-left">
+            <% if(profileVisit){ %>
+                <img class="img-thumbnail" style=" max-width: 100px;" src = "<%= profileVisit.profileimg %>" />
+                <br>
+            <% } else{
+                 if(user.profileimg){ %>
+                <img class="img-thumbnail" style=" max-width: 100px;" src = "<%= user.profileimg %>" />
+                <br>
+            <% } }%>        
+    </div>
+    <% if(profileVisit){ %>
+        <div class="col-sm-4 pull-left"> <h2><%= profileVisit.username %>'s project</h2> <br></div>
+        <ul class="nav nav-pills pull-right pull-down">
+        <div  style = "postion: absolute; bottom:0; right:0;"><li role="presentation"  ><a href="/portfolios/profile/<%= profileVisit.username%>/" class="pull-right"> View profile >></a></li>
+        </div>
+        </ul>   
+    <% } else{
+        if(user.profileimg){ %>
+            <div class="col-sm-4 pull-left"> <h2><%= user.username %>'s project</h2> <br></div>
+        <% } }%> 
+    <br>
+</div>
+<div class="row jumbotron">
+           <div class="col-sm-4">
+           
+            <% if(project.img){ %>
+                <img class="img-thumbnail" style="max-width: 200px; vertical-align: middle" src = "<%= project.img %>" /> 
+            <br>
+            <% } else{ %>
+                <img class="img-thumbnail" style="max-width: 200px; vertical-align: middle;" src = "/screenshots/default.jpg" />   
+            <br>
+            <% } %> 
+            <br>
+           </div> 
+           <div class="col-sm-5"> &nbsp;
+                <div>
+                        <p class="pull-left"><%= project.title %></p><br><br>
+                </div>
+                <div> 
+                <p class="pull-left" style="font-size: 12pt"> &nbsp; <%= project.desc %></p><br>  
+                </div>
+            </div>
+           <br>
+        </div>
