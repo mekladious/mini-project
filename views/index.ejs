@@ -6,7 +6,7 @@
 <body>
 <div id="navbar">
     <ul class ="pagination">
-        <% var pages = Math.floor((users.length+4)/5);
+        <% var pages = Math.floor((users.length+9)/10);
         for(p=1; p<=pages; p++){%>
        <li> <a href="#page<%=p%>"> page <%=p%> </a></li>
         <%}%>
@@ -14,11 +14,11 @@
 </div>
 
     <% if(users){ %>
-    <% var pages = Math.floor((users.length+4)/5);%>
+    <% var pages = Math.floor((users.length+9)/10);%>
     <% for(j=0; j<pages;  j++){
         var num = j+1;%>
     <div id="page<%=num%>" >
-        <% for(i= j*5 ; (i<j*5+5 && i<users.length) ; i++){ %>
+        <% for(i= j*10 ; (i<j*10+10 && i<users.length) ; i++){ %>
             <div class="row jumbotron">
                 <div class="col-sm-4">
                     <% if(users[i].profileimg){ %>
